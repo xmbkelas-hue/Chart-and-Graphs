@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scholars' Quest — IELTS Graph Analysis</title>
+<style>
+:root{--navy:#10223b;--blue:#2367e8;--cyan:#47d7d0;--yellow:#ffd166;--pink:#ff6b9a;--ink:#17243a;--muted:#64748b;--paper:#f5f8ff;--white:#fff;--green:#19a974;--shadow:0 18px 50px #13264b20}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-rounded,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}button{font:inherit;cursor:pointer;border:0;touch-action:manipulation}button:focus-visible{outline:4px solid #ffb703;outline-offset:3px}.hidden{display:none!important}
+.topbar{height:68px;padding:0 clamp(16px,4vw,52px);display:flex;align-items:center;justify-content:space-between;background:#ffffffeb;border-bottom:1px solid #e7ecf5;position:sticky;top:0;z-index:20;backdrop-filter:blur(12px)}.brand{display:flex;align-items:center;gap:10px;font-weight:950;letter-spacing:-.5px;color:var(--navy)}.brand-mark{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--blue),#6e4de6);display:grid;place-items:center;color:white;font-size:21px;box-shadow:0 7px 15px #2367e83b}.brand span em{font-style:normal;color:var(--blue)}.top-actions{display:flex;gap:9px;align-items:center}.pill{padding:9px 14px;border-radius:999px;background:#eef3ff;color:#244b91;font-weight:800;font-size:13px}.icon-btn{width:42px;height:42px;border-radius:14px;background:white;border:1px solid #e4eaf4;font-size:19px}
+main{max-width:1180px;margin:0 auto;padding:24px clamp(14px,3vw,34px) 52px}.screen{animation:fadeUp .38s ease both}@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-13px) rotate(2deg)}}@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}@keyframes shine{0%{background-position:0% 50%}100%{background-position:200% 50%}}@keyframes barRise{from{height:0}to{height:var(--h)}}@keyframes confetti{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(280px) rotate(540deg);opacity:0}}
+.hero{position:relative;overflow:hidden;border-radius:32px;background:linear-gradient(125deg,#112442 0%,#183c70 53%,#4b4bd5 100%);color:white;padding:clamp(25px,5vw,60px);min-height:365px;display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center;box-shadow:0 24px 60px #1e3a7040}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;pointer-events:none}.hero:before{width:280px;height:280px;background:#48d7d020;right:-65px;top:-95px}.hero:after{width:190px;height:190px;background:#ffd16620;right:23%;bottom:-130px}.hero-copy,.hero-art{position:relative;z-index:1}.eyebrow{font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:8px}.eyebrow:before{content:"";width:24px;height:2px;background:currentColor}.hero h1{font-size:clamp(39px,5vw,65px);line-height:.98;letter-spacing:-2.7px;margin:17px 0}.hero h1 span{color:var(--yellow)}.hero p{max-width:510px;color:#d7e5ff;line-height:1.65;font-size:16px}.hero-cta{display:flex;gap:11px;flex-wrap:wrap;margin-top:25px}.primary,.secondary,.ghost{padding:14px 20px;border-radius:15px;font-weight:900;transition:transform .18s,box-shadow .18s}.primary{background:var(--yellow);color:#263047;box-shadow:0 7px 0 #d5a83f}.primary:hover,.secondary:hover,.ghost:hover{transform:translateY(-2px)}.secondary{background:var(--blue);color:white;box-shadow:0 7px 0 #1748aa}.ghost{background:#ffffff18;border:1px solid #ffffff45;color:white}.hero-art{min-height:245px;display:grid;place-items:center}.chart-board{width:min(100%,350px);padding:22px 22px 15px;background:#ffffff12;border:1px solid #ffffff30;border-radius:25px;transform:rotate(3deg);animation:float 5s ease-in-out infinite;backdrop-filter:blur(6px)}.board-head{display:flex;justify-content:space-between;color:#dce7ff;font-size:11px;font-weight:800}.board-title{font-size:17px;font-weight:900;margin:9px 0 15px}.mini-chart{height:135px;display:flex;align-items:end;gap:12px;padding:0 9px;border-bottom:1px solid #ffffff55;background:repeating-linear-gradient(to bottom,transparent 0 32px,#ffffff20 33px 34px)}.mini-bar{flex:1;height:var(--h);border-radius:8px 8px 2px 2px;background:linear-gradient(180deg,var(--cyan),#3b88ff);animation:barRise 1s cubic-bezier(.2,.8,.2,1) both;box-shadow:0 0 18px #47d7d044}.mini-bar:nth-child(2n){background:linear-gradient(180deg,var(--yellow),#ff9f68)}.bar-labels{display:flex;justify-content:space-around;color:#dce7ff;font-size:10px;margin-top:8px}.floating-chip{position:absolute;border-radius:15px;background:white;color:var(--navy);padding:12px 15px;box-shadow:var(--shadow);font-size:12px;font-weight:900;animation:bob 3s ease-in-out infinite}.chip-a{top:15px;right:-5px;transform:rotate(5deg)}.chip-b{bottom:13px;left:-12px;animation-delay:.8s}.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:34px 0 16px}.section-head h2{margin:0;font-size:25px;letter-spacing:-.8px}.section-head p{margin:5px 0 0;color:var(--muted);font-size:14px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.mode-card,.level-card,.panel{background:white;border:1px solid #e7edf7;border-radius:22px;padding:22px;box-shadow:0 5px 18px #1b37630a}.mode-card{transition:transform .2s,border-color .2s;cursor:pointer;position:relative;overflow:hidden}.mode-card:hover{transform:translateY(-4px);border-color:#b7caff}.mode-icon{height:52px;width:52px;border-radius:17px;display:grid;place-items:center;font-size:25px;margin-bottom:18px}.purple{background:#eee8ff}.mint{background:#ddfbf2}.gold{background:#fff3d4}.mode-card h3{margin:0 0 8px;font-size:19px}.mode-card p{color:var(--muted);font-size:13px;line-height:1.55;min-height:41px}.card-link{font-weight:900;color:var(--blue);font-size:13px;margin-top:14px;display:inline-flex;gap:8px;align-items:center}.objective-strip{margin-top:18px;border-radius:20px;background:#eaf2ff;padding:20px 23px;display:flex;gap:18px;align-items:flex-start}.objective-strip .target{font-size:26px}.objective-strip h3{margin:0 0 8px}.objective-strip ul{margin:0;padding-left:18px;color:#3e526e;display:flex;flex-wrap:wrap;gap:8px 28px;font-size:13px}.subnav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px}.back-btn{background:white;border:1px solid #e2e9f4;border-radius:12px;padding:10px 14px;font-weight:800;color:#44536b}.kicker{color:var(--blue);text-transform:uppercase;letter-spacing:1.7px;font-size:11px;font-weight:950}.page-title{font-size:clamp(28px,4vw,42px);letter-spacing:-1.5px;margin:8px 0}.muted{color:var(--muted);line-height:1.6}.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}.level-card{cursor:pointer;text-align:left;transition:.2s;position:relative}.level-card:hover{transform:translateY(-3px);border-color:#a8c3ff}.level-number{width:39px;height:39px;display:grid;place-items:center;background:#eef3ff;color:var(--blue);font-weight:950;border-radius:13px;margin-bottom:16px}.level-card h3{margin:0 0 7px}.level-card p{font-size:13px;color:var(--muted);line-height:1.5;min-height:40px}.level-meta{display:flex;justify-content:space-between;font-size:11px;font-weight:800;color:#6b7b94;border-top:1px solid #edf1f7;padding-top:13px;margin-top:13px}.lesson-layout{display:grid;grid-template-columns:1fr .85fr;gap:18px;align-items:start}.story-scene{min-height:300px;background:linear-gradient(145deg,#142b4d,#3056a0);border-radius:25px;padding:27px;color:white;position:relative;overflow:hidden}.story-scene:after{content:"📊";font-size:145px;position:absolute;right:14px;bottom:5px;opacity:.18;transform:rotate(-10deg)}.story-scene .story-emoji{font-size:40px;animation:bob 2.5s infinite}.story-scene h2{font-size:27px;max-width:440px;margin:16px 0 8px;position:relative;z-index:1}.story-scene p{max-width:440px;line-height:1.7;color:#dce8ff;position:relative;z-index:1}.story-scene .primary{position:relative;z-index:2;margin-top:9px}.story-task{background:#fff;border:1px solid #e4ebf5;border-radius:24px;padding:24px}.story-task h3{margin-top:0}.choice-list{display:grid;gap:10px;margin:18px 0}.choice{padding:13px 15px;text-align:left;background:#f4f7fc;border:2px solid transparent;border-radius:13px;font-weight:750;color:#31415a}.choice:hover{border-color:#b9caff}.choice.selected{border-color:var(--blue);background:#edf3ff}.feedback{padding:12px 14px;border-radius:12px;font-weight:750;font-size:13px;margin:12px 0}.good{background:#e1faef;color:#08764e}.bad{background:#fff0e6;color:#9a451e}.story-progress{display:flex;gap:7px;margin:20px 0}.story-progress span{height:5px;border-radius:9px;background:#dce5f4;flex:1}.story-progress span.done{background:var(--cyan)}.lesson-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.lesson-box{background:#fff;border:1px solid #e5ebf5;border-radius:20px;padding:21px}.lesson-box h3{margin:0 0 12px}.formula{background:#eef4ff;color:#244d98;border-radius:13px;padding:13px;font-weight:850;margin:10px 0}.phrase{display:inline-block;padding:7px 10px;background:#f1f6f7;border-radius:9px;margin:4px;font-size:13px;font-weight:750;color:#31536a}.chart-panel{background:white;border:1px solid #e4ebf5;border-radius:24px;padding:22px;box-shadow:0 5px 18px #1b37630a}.chart-heading{display:flex;justify-content:space-between;align-items:start;gap:12px}.chart-heading h3{margin:0 0 5px}.chart-heading p{margin:0;color:var(--muted);font-size:13px}.chart-type{background:#f0f4ff;color:#3a58a4;border-radius:9px;padding:7px 10px;font-size:11px;font-weight:900;white-space:nowrap}.graph{height:250px;margin-top:22px;display:flex;gap:15px;align-items:stretch}.y-axis{display:flex;flex-direction:column;justify-content:space-between;color:#8290a6;font-size:10px;padding:0 0 24px}.plot{flex:1;position:relative;display:flex;align-items:end;justify-content:space-around;border-bottom:1px solid #bac6d9;background:repeating-linear-gradient(to bottom,transparent 0 calc(25% - 1px),#e9eef6 calc(25% - 1px) 25%);padding:0 10px 0}.plot-col{height:100%;display:flex;flex-direction:column;justify-content:end;align-items:center;flex:1;max-width:65px;gap:8px}.plot-bar{width:70%;height:var(--h);min-height:3px;border-radius:8px 8px 2px 2px;background:linear-gradient(180deg,#55d8d0,#2874e8);position:relative;transition:height .5s ease;box-shadow:0 5px 12px #2367e81a}.plot-bar.alt{background:linear-gradient(180deg,#ffd166,#ff8c69)}.plot-bar.pink{background:linear-gradient(180deg,#ff9dbb,#e14f8d)}.plot-col small{position:absolute;bottom:-23px;color:#66768e;font-size:10px;white-space:nowrap}.bar-value{font-size:11px;font-weight:900;color:#354966}.graph-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;color:#62718a;font-size:12px}.dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px;background:#2874e8}.question-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.progress-track{height:8px;background:#e7edf6;border-radius:20px;overflow:hidden;margin:12px 0 22px}.progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));width:0;transition:width .3s}.quiz-layout{display:grid;grid-template-columns:1fr 1fr;gap:17px;align-items:start}.quiz-question{background:#fff;border:1px solid #e3eaf4;border-radius:24px;padding:25px}.quiz-question h2{font-size:23px;line-height:1.35;margin:12px 0}.quiz-question .choice-list{margin-top:22px}.quiz-footer{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:20px}.small-btn{padding:12px 16px;border-radius:12px;font-weight:900}.small-btn.blue{background:var(--blue);color:white}.small-btn.light{background:#edf2fb;color:#31435e}.small-btn:disabled{opacity:.4;cursor:not-allowed}.scoreboard{display:flex;gap:10px;flex-wrap:wrap}.score-box{padding:12px 15px;border-radius:14px;background:#f0f5ff;min-width:110px}.score-box strong{display:block;font-size:23px}.score-box small{font-size:11px;color:#65758e;font-weight:800}.versus-banner{background:linear-gradient(110deg,#152848,#3d4ec5);color:white;border-radius:22px;padding:22px;display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:17px}.versus-banner h2{margin:0 0 5px}.versus-banner p{margin:0;color:#d6e1ff;font-size:13px}.versus-score{display:flex;gap:10px}.versus-score div{background:#ffffff17;border:1px solid #ffffff26;border-radius:14px;padding:12px;text-align:center;min-width:80px}.versus-score b{display:block;font-size:25px}.player-label{font-size:11px;font-weight:950;letter-spacing:1px;text-transform:uppercase;color:#4f69a2}.turn-note{padding:12px 15px;background:#fff6d9;border:1px solid #f6df8d;border-radius:12px;font-size:13px;font-weight:800;color:#73551b;margin:14px 0}.result-card{background:white;border:1px solid #e4ebf5;border-radius:26px;padding:35px;text-align:center;position:relative;overflow:hidden}.result-icon{font-size:64px;animation:bob 2s infinite}.result-card h1{font-size:38px;margin:12px 0}.result-card p{color:var(--muted);line-height:1.6}.result-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:24px}.footer-note{text-align:center;color:#93a0b3;font-size:11px;margin:32px 0 0}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#152848;color:white;padding:13px 18px;border-radius:14px;box-shadow:var(--shadow);z-index:99;font-size:13px;font-weight:800;animation:fadeUp .2s ease}.confetti-piece{position:absolute;top:-15px;width:8px;height:12px;background:var(--yellow);animation:confetti 1.6s linear forwards}
+
+/* Islamic scholars / House of Wisdom visual theme */
+:root{--navy:#102c2a;--blue:#16796b;--cyan:#65d8b0;--yellow:#f2c66d;--pink:#d77d8b;--paper:#f5f3e9;--ink:#1c302d;--green:#19866d}
+body{background:radial-gradient(ellipse at 8% 5%,#e5efe4 0,transparent 32%),var(--paper)}
+.topbar{background:#fbfaf4ed;border-bottom-color:#dce7d9}
+.brand{color:#173d35}.brand-mark{background:linear-gradient(135deg,#176e5b,#d3a64b);box-shadow:0 7px 15px #176e5b35}
+.hero{background:linear-gradient(125deg,#103b34 0%,#176858 52%,#294b39 100%);box-shadow:0 24px 60px #1d483a35}
+.hero:before{background:#e9c87522}.hero:after{background:#8dd7b020}
+.eyebrow{color:#f2d17f}.hero h1 span{color:#f2d17f}
+.primary{background:#f2d17f;color:#17372f;box-shadow:0 7px 0 #bd984c}
+.secondary,.small-btn.blue{background:#16796b;color:white;box-shadow:0 5px 0 #0d554b}
+.mode-card:hover,.level-card:hover{border-color:#9bc8b4}
+.mode-icon.purple{background:#e7edda}.mode-icon.mint{background:#d9f2e6}.mode-icon.gold{background:#faedc9}
+.card-link{color:#16796b}.objective-strip{background:#e6f0e4}
+.story-scene{background:linear-gradient(145deg,#103b34,#247765)}
+.kicker{color:#16796b}.chart-type{background:#e4f1e9;color:#176552}
+.plot-bar{background:linear-gradient(180deg,#65d8b0,#16796b)}.plot-bar.alt{background:linear-gradient(180deg,#f2d17f,#c98d43)}.plot-bar.pink{background:linear-gradient(180deg,#e8a0a7,#bd5f6b)}
+.progress-fill{background:linear-gradient(90deg,#16796b,#65d8b0)}
+.versus-banner{background:linear-gradient(110deg,#103b34,#287968)}
+.story-scene:after{content:"✦ ۞ ✦";font-size:90px;right:12px;bottom:12px;letter-spacing:10px;color:#f2d17f}
+.islamic-hero-art{position:relative;min-height:270px;display:grid;place-items:center}
+.arch-window{width:min(100%,350px);height:260px;position:relative;border:3px solid #d7b766;border-bottom:0;border-radius:180px 180px 10px 10px;background:linear-gradient(180deg,#e6d39b20,#0c302b60);overflow:hidden;box-shadow:inset 0 0 0 9px #ffffff0a,0 15px 35px #061d1940}
+.arch-window:before{content:"";position:absolute;inset:14px;border:1px solid #d7b76680;border-bottom:0;border-radius:170px 170px 5px 5px}
+.arch-stars{position:absolute;inset:20px;background-image:radial-gradient(#f4d17c 1.5px,transparent 2px),radial-gradient(#b4e4c8 1px,transparent 2px);background-size:43px 47px,61px 59px;background-position:0 0,20px 15px;opacity:.7}
+.scholar-illustration{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:215px;height:205px}
+.scholar-illustration .robe{position:absolute;bottom:-8px;left:15px;width:185px;height:126px;background:linear-gradient(130deg,#d4a64f,#f1d17b 48%,#9d7433);clip-path:polygon(31% 0,69% 0,100% 100%,0 100%);border-radius:45px 45px 0 0}
+.scholar-illustration .body{position:absolute;bottom:70px;left:53px;width:109px;height:92px;background:#f5e6c2;border-radius:44% 44% 28% 28%;border:3px solid #b98b40}
+.scholar-illustration .head{position:absolute;bottom:136px;left:72px;width:72px;height:75px;border-radius:48% 48% 45% 45%;background:#b9784d;border:3px solid #8e593b}
+.scholar-illustration .turban{position:absolute;z-index:2;bottom:185px;left:61px;width:94px;height:40px;border-radius:55% 55% 25% 25%;background:repeating-linear-gradient(0deg,#f1d17b 0 7px,#c39845 8px 11px);border:2px solid #9f7938}
+.scholar-illustration .beard{position:absolute;z-index:3;bottom:118px;left:88px;width:39px;height:38px;background:#47382e;clip-path:polygon(0 0,100% 0,83% 72%,50% 100%,18% 72%)}
+.floating-chip{color:#183b32}.chip-a{background:#fff8df}.chip-b{background:#e5f8ec}
+.expression-card{background:white;border:1px solid #e0e8dc;border-radius:18px;padding:18px}
+.expression-card h3{margin:0 0 8px}.expression-card p{margin:7px 0;color:#61756c;font-size:13px;line-height:1.5}
+.expression{background:#e9f4ec;border-left:4px solid #16796b;border-radius:8px;padding:11px 12px;font-weight:800;color:#204e41;margin:9px 0;font-size:13px}
+.tile-board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.quest-tile{min-height:125px;border-radius:19px;background:linear-gradient(145deg,#176e5b,#103b34);color:white;border:2px solid #d8bd72;padding:15px;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;text-align:left;transition:transform .2s,filter .2s}
+.quest-tile:hover{transform:translateY(-4px);filter:brightness(1.1)}.quest-tile:disabled{opacity:.68;cursor:default;transform:none}
+.quest-tile b{font-size:24px;color:#f2d17f}.quest-tile span{font-size:12px;font-weight:800}
+.timer-chip{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:9px 13px;background:#fff2d0;color:#78551c;font-weight:900;font-size:13px}
+@media(max-width:520px){.tile-board{gap:8px}.quest-tile{min-height:100px;padding:10px}.scholar-illustration{transform:translateX(-50%) scale(.88);transform-origin:bottom center}.arch-window{height:235px}}
+
+
+.presentation-stage{border:1px solid #d9e5d7;border-radius:25px;overflow:hidden;background:#fff;box-shadow:0 12px 32px #183d2d12}
+.presentation-sky{height:370px;position:relative;overflow:hidden;background:linear-gradient(145deg,#103b34,#1c6654 58%,#d0a34b);color:white}
+.presentation-sky:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#f6d47c 1.4px,transparent 2px),radial-gradient(#d6efdc 1px,transparent 2px);background-size:45px 47px,68px 61px;background-position:0 0,21px 19px;opacity:.55}
+.presentation-arch{position:absolute;left:4%;bottom:-90px;width:43%;height:390px;border:3px solid #e2c16e;border-bottom:0;border-radius:190px 190px 0 0;background:#fff9e50b;box-shadow:inset 0 0 0 10px #ffffff0b}
+.presentation-scholar{position:absolute;left:8%;bottom:0;width:220px;height:260px;animation:scholarBreathe 3s ease-in-out infinite;z-index:2}
+@keyframes scholarBreathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.pres-robe{position:absolute;bottom:-6px;left:13px;width:190px;height:145px;background:linear-gradient(120deg,#c59a47,#f3d17b,#b88b3b);clip-path:polygon(30% 0,70% 0,100% 100%,0 100%)}
+.pres-body{position:absolute;bottom:65px;left:58px;width:105px;height:103px;background:#f2e2bd;border:3px solid #b38a42;border-radius:42% 42% 24% 24%}
+.pres-head{position:absolute;z-index:2;bottom:144px;left:77px;width:69px;height:74px;background:#b97950;border:3px solid #8e593b;border-radius:48% 48% 44% 44%}
+.pres-turban{position:absolute;z-index:3;bottom:192px;left:63px;width:96px;height:38px;border-radius:55% 55% 22% 22%;border:2px solid #9d793b;background:repeating-linear-gradient(0deg,#f4d47e 0 7px,#c19743 8px 11px)}
+.pres-beard{position:absolute;z-index:4;bottom:126px;left:91px;width:40px;height:39px;background:#49372d;clip-path:polygon(0 0,100% 0,82% 73%,50% 100%,18% 73%)}
+.pres-book{position:absolute;z-index:5;bottom:42px;left:140px;font-size:37px;transform:rotate(-10deg);animation:bookBob 2s ease-in-out infinite}
+@keyframes bookBob{0%,100%{transform:rotate(-10deg) translateY(0)}50%{transform:rotate(-4deg) translateY(-7px)}}
+.presentation-chart{position:absolute;right:4%;top:24px;width:44%;height:150px;background:#ffffffed;color:#193d32;border:2px solid #e5c875;border-radius:17px;padding:15px;box-shadow:0 12px 28px #071f1c38;z-index:2;animation:fadeUp .45s ease}
+.pres-bars{height:95px;display:flex;align-items:end;justify-content:space-around;gap:8px;border-bottom:1px solid #b8cabb;background:repeating-linear-gradient(to bottom,transparent 0 22px,#e3ebe2 23px 24px);padding:0 8px}
+.pres-bars span{width:15%;height:var(--h);background:linear-gradient(#65d8b0,#16796b);border-radius:5px 5px 0 0;animation:barRise .8s ease both}
+.pres-bars span:nth-child(2n){background:linear-gradient(#f2d17f,#c99542)}
+.pres-pie{width:100px;height:100px;margin:7px auto;border-radius:50%;background:conic-gradient(#16796b 0 40%,#f2d17f 40% 65%,#df8c91 65% 82%,#7cb9a0 82% 100%);box-shadow:inset 0 0 0 2px white}
+.presentation-caption{position:absolute;z-index:3;right:4%;bottom:22px;width:57%;padding:19px 21px;border-radius:18px;background:#0b2f2ae8;border:1px solid #e2c16e88;box-shadow:0 10px 30px #061d1940}
+.presentation-caption>span{font-size:10px;letter-spacing:1.5px;font-weight:900;color:#f2d17f}
+.presentation-caption h2{font-size:clamp(19px,2.5vw,29px);margin:8px 0}
+.presentation-caption p{font-size:13px;line-height:1.55;color:#d9e9df;margin:0 0 10px}
+.presentation-expression{border-left:3px solid #f2d17f;padding:9px 12px;background:#ffffff12;border-radius:0 8px 8px 0;color:#ffdf91;font-size:13px;font-weight:850}
+.presentation-controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:15px 18px}
+.presentation-controls .muted{margin-left:auto;font-size:12px}
+.presentation-star{position:absolute;z-index:1;color:#f2d17f;font-size:25px;animation:bob 3s infinite}
+.star1{top:22px;left:30%}.star2{top:105px;left:43%;animation-delay:.7s}
+@media(max-width:650px){.presentation-sky{height:520px}.presentation-arch{left:3%;width:90%;height:300px;bottom:205px}.presentation-scholar{left:50%;transform:translateX(-50%);bottom:195px;scale:.78;transform-origin:bottom center}.presentation-scholar{animation:none}.presentation-chart{top:14px;right:4%;width:54%;height:135px;padding:10px}.pres-bars{height:82px}.presentation-caption{left:4%;right:4%;bottom:14px;width:92%;padding:15px}.presentation-caption h2{font-size:21px}.presentation-controls .muted{width:100%;margin-left:0}}
+
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding:29px;min-height:0}.hero-art{min-height:240px}.chart-board{max-width:330px}.cards,.level-grid{grid-template-columns:1fr 1fr}.lesson-layout,.quiz-layout{grid-template-columns:1fr}.lesson-grid{grid-template-columns:1fr}.graph{height:220px}.versus-banner{align-items:flex-start;flex-direction:column}}
+@media(max-width:520px){.topbar{height:60px}.pill{display:none}main{padding-top:14px}.hero{border-radius:23px}.hero h1{letter-spacing:-1.5px}.cards,.level-grid{grid-template-columns:1fr}.mode-card p{min-height:0}.section-head{align-items:start;flex-direction:column}.objective-strip{padding:17px}.objective-strip ul{display:block}.objective-strip li{margin:6px 0}.graph{gap:7px;padding-left:0}.plot{padding:0 3px}.plot-col small{font-size:9px}.plot-bar{width:76%}.chart-panel,.quiz-question{padding:17px}.score-box{flex:1}.versus-score{width:100%}.versus-score div{flex:1}.hero-art{min-height:220px}.floating-chip{font-size:10px;padding:9px 11px}.chip-a{right:0}.chip-b{left:0}}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="brand"><div class="brand-mark">✦</div><span>SCHOLARS’ <em>QUEST</em></span></div>
+ <div class="top-actions"><span class="pill">ENGLISH • IELTS GRAPH SKILLS</span><button class="icon-btn" id="soundToggle" aria-label="Toggle sound" title="Toggle sound">🔊</button></div>
+</header>
+<main id="app">
+<section id="home" class="screen">
+ <div class="hero">
+  <div class="hero-copy">
+   <div class="eyebrow">INSPIRED BY THE ISLAMIC GOLDEN AGE</div>
+   <h1>Wisdom begins<br>with <span>curiosity.</span></h1>
+   <p>Enter the world of the great Muslim scholars. Explore charts, solve data mysteries, and build IELTS-level graph-analysis skills through interactive quests.</p>
+   <div class="hero-cta"><button class="primary" onclick="showScreen('levels')">🚀 Start Story Mode</button><button class="ghost" onclick="startVersus()">⚔️ 2-Player Versus</button></div>
+  </div>
+  <div class="hero-art islamic-hero-art">
+   <div class="arch-window"><div class="arch-stars"></div><div class="scholar-illustration"><div class="robe"></div><div class="body"></div><div class="head"></div><div class="turban"></div><div class="beard"></div></div></div>
+   <div class="floating-chip chip-a">📈 Read the evidence</div><div class="floating-chip chip-b">✦ House of Wisdom</div>
+  </div>
+ </div>
+ <div class="section-head"><div><h2>Choose your path to knowledge</h2><p>Explore six ways to master data description, IELTS expressions, and classroom challenges.</p></div></div>
+ <div class="cards">
+  <article class="mode-card" onclick="showScreen('levels')"><div class="mode-icon purple">🗺️</div><h3>Story Mode</h3><p>Follow a mystery, learn the concepts, then prove your skills in each chapter.</p><span class="card-link">Explore the story <span>→</span></span></article>
+  <article class="mode-card" onclick="startVersus()"><div class="mode-icon mint">⚔️</div><h3>2-Player Versus</h3><p>Take turns answering quiz questions. Earn points, use your data detective instincts, and beat your rival.</p><span class="card-link">Challenge a friend <span>→</span></article>
+  <article class="mode-card" onclick="showScreen('learn')"><div class="mode-icon gold">📚</div><h3>Quick Academy</h3><p>Review chart types, key vocabulary, comparison phrases, and analysis strategies.</p><span class="card-link">Open the learning lab →</span></article>
+  <article class="mode-card" onclick="showScreen('expressions')"><div class="mode-icon mint">🗣️</div><h3>IELTS Language Expressions</h3><p>Learn Band 6–8 style phrases for introductions, trends, comparisons, and overviews.</p><span class="card-link">Build your vocabulary →</span></article>
+  <article class="mode-card" onclick="startPresentation()"><div class="mode-icon purple">🎬</div><h3>Scholar's Presentation</h3><p>Watch an animated scholar teach English expressions for describing bar charts and pie charts.</p><span class="card-link">Play the presentation →</span></article>
+  <article class="mode-card" onclick="startSprint()"><div class="mode-icon gold">⏱️</div><h3>IELTS Graph Sprint</h3><p>A timed solo challenge: answer IELTS-style data questions before the clock runs out.</p><span class="card-link">Start the sprint →</span></article>
+  <article class="mode-card" onclick="startTiles()"><div class="mode-icon purple">🧩</div><h3>Mystery Tiles</h3><p>Pick a mystery tile from the board. Reveal a question, earn points, and unlock feedback.</p><span class="card-link">Open the quiz board →</span></article>
+ </div>
+ <div class="objective-strip"><div class="target">🎯</div><div><h3>Learning objectives</h3><ul><li>Read pie and bar charts, titles, labels, units, and data.</li><li>Describe trends, comparisons, peaks, and lows.</li><li>Make evidence-based conclusions from graphs.</li><li>Use accurate English expressions to report data.</li></ul></div></div>
+ <div class="footer-note">DESIGNED FOR CLASSROOM DISPLAY • TOUCH-FRIENDLY • WORKS OFFLINE</div>
+</section>
+
+<section id="levels" class="screen hidden">
+ <div class="subnav"><button class="back-btn" onclick="showScreen('home')">← Main menu</button><span class="kicker">STORY MODE</span></div>
+ <h1 class="page-title">The Data Detective Files 🕵️</h1><p class="muted">The school festival's report has gone missing! Help the student research team uncover the truth, one chart at a time. Every chapter follows <b>Story → Material → Practice</b>.</p>
+ <div class="level-grid">
+  <button class="level-card" onclick="startStory(0)"><div class="level-number">01</div><h3>📊 The First Clue</h3><p>Read a bar chart and compare students' club choices.</p><div class="level-meta"><span>BEGINNER</span><span>3 QUESTIONS →</span></div></button>
+  <button class="level-card" onclick="startStory(1)"><div class="level-number">02</div><h3>📈 The Library Survey</h3><p>Compare categories and interpret the data.</p><div class="level-meta"><span>INTERMEDIATE</span><span>3 QUESTIONS →</span></div></button>
+  <button class="level-card" onclick="startStory(2)"><div class="level-number">03</div><h3>🥧 The Big Picture</h3><p>Interpret percentages and parts of a whole.</p><div class="level-meta"><span>CHALLENGE</span><span>3 QUESTIONS →</span></div></button>
+ </div>
+ <div class="objective-strip"><div class="target">🔓</div><div><h3>Your mission</h3><p class="muted" style="margin:0">Complete each chapter's story challenge, review the material, and finish the practice round. Try to earn all three Data Badges!</p></div></div>
+</section>
+
+<section id="story" class="screen hidden">
+ <div class="subnav"><button class="back-btn" onclick="showScreen('levels')">← Chapters</button><span class="kicker" id="storyChapterLabel">CHAPTER 01</span></div>
+ <div class="story-progress" id="storyProgress"><span class="done"></span><span></span><span></span></div>
+ <div id="storyStage"></div>
+</section>
+
+<section id="learn" class="screen hidden">
+ <div class="subnav"><button class="back-btn" onclick="showScreen('home')">← Main menu</button><span class="kicker">QUICK ACADEMY</span></div>
+ <h1 class="page-title">Your graph-analysis toolkit 📚</h1><p class="muted">A simple strategy: read the chart carefully, notice patterns, then explain what the data shows.</p>
+ <div class="lesson-grid" style="margin-top:22px">
+  <div class="lesson-box"><h3>1. Know your charts</h3><p class="muted">These two charts answer different data questions.</p><div class="formula">📊 Bar chart = compare categories</div><div class="formula">🥧 Pie chart = show parts of a whole</div></div>
+  <div class="lesson-box"><h3>2. Spot the key information</h3><p class="muted">Check these before you describe anything.</p><ul><li><b>Title:</b> What is the chart about?</li><li><b>Axes / labels:</b> What is measured?</li><li><b>Units:</b> People, %, dollars, or other units?</li><li><b>Time period:</b> When was the data collected?</li></ul></div>
+  <div class="lesson-box"><h3>3. Describe trends</h3><div class="phrase">increase / rise / grow</div><div class="phrase">decrease / fall / decline</div><div class="phrase">remain stable</div><div class="phrase">fluctuate</div><div class="phrase">reach a peak</div><div class="phrase">hit a low</div><p class="muted">Example: “The number of participants rose steadily from 20 to 45.”</p></div>
+  <div class="lesson-box"><h3>4. Compare & conclude</h3><div class="phrase">higher/lower than</div><div class="phrase">whereas / while</div><div class="phrase">the most / the least</div><div class="phrase">approximately / just over</div><div class="phrase">overall / in contrast</div><p class="muted">Example: “Overall, music was the most popular club, whereas science was the least popular.”</p></div>
+ </div>
+ <div style="margin-top:18px"><button class="secondary" onclick="showScreen('levels')">Practice in Story Mode →</button> <button class="small-btn light" onclick="startVersus()">⚔️ Try Versus</button></div>
+</section>
+
+<section id="versus" class="screen hidden">
+ <div class="subnav"><button class="back-btn" onclick="showScreen('home')">← Main menu</button><span class="kicker">CLASSROOM SHOWDOWN</span></div>
+ <div class="versus-banner"><div><h2>⚔️ Scholars' Arena</h2><p>Multiplayer classroom quiz • 2–6 players • take turns • correct answer = 100 points</p></div><div class="versus-score" id="versusHeaderScores"><div><small>PLAYERS</small><b>2–6</b></div><div><small>PER CORRECT</small><b>+100</b></div></div></div>
+ <div class="panel" id="versusSetup"><h3>Gather the scholars!</h3><p class="muted">Create a classroom quiz for 2–6 players. Everyone shares one laptop or interactive display and takes turns answering.</p><label for="playerCount"><b>Number of players</b></label><select id="playerCount" onchange="renderPlayerNameInputs()" style="display:block;margin-top:8px;padding:12px;border:1px solid #dce5f1;border-radius:12px;font:inherit"><option value="2">2 players</option><option value="3">3 players</option><option value="4">4 players</option><option value="5">5 players</option><option value="6">6 players — maximum</option></select><div id="playerNameInputs" class="lesson-grid" style="margin-top:15px"></div><div style="margin-top:18px"><label for="roundCount"><b>Number of questions</b></label><select id="roundCount" style="display:block;margin-top:8px;padding:12px;border:1px solid #dce5f1;border-radius:12px;font:inherit"><option value="6">6 questions — Quick Match</option><option value="9" selected>9 questions — Full Match</option><option value="12">12 questions — Scholar Challenge</option></select></div><button class="secondary" style="margin-top:22px" onclick="beginVersus()">Start the scholars' match ⚡</button></div>
+ <div id="versusGame" class="hidden"></div>
+</section>
+
+
+<section id="expressions" class="screen hidden">
+ <div class="subnav"><button class="back-btn" onclick="showScreen('home')">← Main menu</button><span class="kicker">IELTS LANGUAGE LAB</span></div>
+ <h1 class="page-title">Language Expressions for IELTS 📖</h1>
+ <p class="muted">Build clear, accurate Task 1 descriptions. Choose expressions that fit the data; memorised phrases cannot replace accurate interpretation.</p>
+ <div class="lesson-grid" style="margin-top:22px">
+  <div class="expression-card"><h3>1. Introduction</h3><p>Paraphrase what the chart illustrates.</p><div class="expression">The bar chart illustrates the number of…</div><div class="expression">The bar chart compares the number of… across categories…</div><div class="expression">The pie charts show the proportion of…</div></div>
+  <div class="expression-card"><h3>2. Overview</h3><p>Summarise the main features without listing every number.</p><div class="expression">Overall, it is clear that…</div><div class="expression">The most noticeable feature is that…</div><div class="expression">In general, X accounted for the largest share.</div></div>
+  <div class="expression-card"><h3>3. Upward & downward trends</h3><div class="expression">X increased steadily from 20 to 45.</div><div class="expression">The figure rose sharply before levelling off.</div><div class="expression">There was a gradual decline in…</div><div class="expression">The figure fluctuated throughout the period.</div></div>
+  <div class="expression-card"><h3>4. Comparisons & precision</h3><div class="expression">X was considerably higher than Y.</div><div class="expression">By contrast, the figure for Y remained stable.</div><div class="expression">The figure peaked at approximately 60%.</div><div class="expression">X accounted for just under one-third.</div></div>
+  <div class="expression-card"><h3>5. Numbers & proportions</h3><div class="expression">A rise of 10 units / an increase of 10%</div><div class="expression">Twice as high as / three times as many as</div><div class="expression">Approximately / roughly / just over / just under</div><p>Remember: “10%” is a percentage; a “10 percentage-point increase” is the difference between two percentages.</p></div>
+  <div class="expression-card"><h3>6. IELTS response structure</h3><div class="formula">Paragraph 1 — Introduction</div><div class="formula">Paragraph 2 — Overview</div><div class="formula">Paragraph 3 — Key details & comparisons</div><p>Use data selectively, compare relevant features, and avoid explaining causes unless the chart provides that information.</p></div>
+ </div>
+ <div class="objective-strip"><div class="target">🎯</div><div><h3>Quick speaking / writing challenge</h3><p class="muted" style="margin:0 0 10px">The number of library visits rose from 20 in January to 50 in May.</p><div class="expression">Model answer: “Overall, library visits increased substantially, rising from 20 in January to 50 in May.”</div><button class="secondary" onclick="startSprint()">Practise in IELTS Graph Sprint →</button></div></div>
+</section>
+
+
+<section id="presentation" class="screen hidden">
+ <div class="subnav"><button class="back-btn" onclick="showScreen('home')">← Main menu</button><span class="kicker">SCHOLAR'S PRESENTATION</span></div>
+ <h1 class="page-title">The Scholar's Graph Guide 🎬</h1>
+ <p class="muted">An animated mini-lesson on describing bar charts and pie charts in clear, IELTS-style English. Press play, follow the expressions, and pause to practise speaking.</p>
+ <div class="presentation-stage" id="presentationStage">
+  <div class="presentation-sky"><div class="presentation-star star1">✦</div><div class="presentation-star star2">✧</div><div class="presentation-arch"></div>
+   <div class="presentation-scholar"><div class="pres-turban"></div><div class="pres-head"></div><div class="pres-beard"></div><div class="pres-body"></div><div class="pres-robe"></div><div class="pres-book">📖</div></div>
+   <div class="presentation-chart" id="presentationChart"></div>
+   <div class="presentation-caption"><span id="presentationChapter">CHAPTER 1 / 6</span><h2 id="presentationTitle">Welcome, young scholar!</h2><p id="presentationText">Let's learn how to describe data with precision.</p><div class="presentation-expression" id="presentationExpression">A good description begins with what the chart shows.</div></div>
+  </div>
+  <div class="presentation-controls"><button class="secondary" id="presentationPlay" onclick="togglePresentation()">▶ Play lesson</button><button class="small-btn light" onclick="presentationPrev()">← Previous</button><button class="small-btn light" onclick="presentationNext()">Next →</button><button class="small-btn light" onclick="togglePresentationVoice()" id="presentationVoice">🔊 Voice: on</button><span class="muted" id="presentationStatus">Ready to play • 6 scenes</span></div>
+  <div class="progress-track"><div id="presentationProgress" class="progress-fill" style="width:0%"></div></div>
+ </div>
+ <div class="lesson-grid" style="margin-top:17px">
+  <div class="lesson-box"><h3>📊 Bar chart expressions</h3><div class="expression">The bar chart compares…</div><div class="expression">The highest figure was recorded for…</div><div class="expression">X was twice as high as Y.</div></div>
+  <div class="lesson-box"><h3>🥧 Pie chart expressions</h3><div class="expression">The pie chart illustrates the proportion of…</div><div class="expression">X accounted for the largest share, at 40%.</div><div class="expression">Together, A and B represented 60%.</div></div>
+ </div>
+</section>
+
+<section id="sprint" class="screen hidden">
+ <div class="subnav"><button class="back-btn" onclick="showScreen('home')">← Main menu</button><span class="kicker">IELTS GRAPH SPRINT</span></div>
+ <div class="question-top"><div><h1 class="page-title">Beat the clock ⏱️</h1><p class="muted">Solo IELTS-style chart analysis. Each correct answer earns 100 points.</p></div><span id="sprintTimer" class="timer-chip">⏱️ 60 seconds</span></div>
+ <div class="progress-track"><div id="sprintProgress" class="progress-fill" style="width:0%"></div></div>
+ <div id="sprintContent"></div>
+</section>
+
+<section id="tiles" class="screen hidden">
+ <div class="subnav"><button class="back-btn" onclick="showScreen('home')">← Main menu</button><span class="kicker">MYSTERY TILES</span></div>
+ <h1 class="page-title">Choose a tile, reveal a clue 🧩</h1>
+ <p class="muted">Choose any unopened tile. Each tile hides a chart-analysis challenge. Correct answers earn points; every answer receives feedback.</p>
+ <div class="scoreboard" style="margin:18px 0"><div class="score-box"><strong id="tileScore">0</strong><small>YOUR POINTS</small></div><div class="score-box"><strong id="tileRemaining">9</strong><small>TILES LEFT</small></div><div class="score-box"><strong id="tileCorrect">0</strong><small>CORRECT</small></div></div>
+ <div id="tileBoard" class="tile-board"></div>
+ <div id="tileQuestion" style="margin-top:18px"></div>
+ <div id="tileLeaderboard" class="panel" style="margin-top:18px"><h3>🏆 Session leaderboard</h3><p class="muted" style="margin:0">Complete tiles to record your score in this round.</p><div id="tileLeaderboardRows"></div></div>
+</section>
+
+<section id="results" class="screen hidden"><div class="subnav"><button class="back-btn" onclick="showScreen('home')">← Main menu</button></div><div id="resultContent"></div></section>
+</main>
+<script>
+const chapters=[
+ {title:"The First Clue",icon:"📊",tag:"BAR CHART",story:"The school festival team has lost the summary of its club survey. You are a data detective. The first clue is a bar chart showing how many students joined each club. Read the chart to help the team make a clear report.",task:"Which club attracted the greatest number of students?",opts:["Science Club","Music Club","Art Club","Drama Club"],correct:1,explain:"Music Club is the highest bar at 40 students, so it attracted the greatest number.",materialTitle:"Compare the categories",material:"A bar chart compares amounts across categories. Read the title and labels first, then compare bar heights and values. Use “the most popular”, “the least popular”, “more than”, and “fewer than”.",chart:{title:"Students Joining School Clubs",subtitle:"Number of students surveyed",type:"Bar chart",labels:["Science","Music","Art","Drama"],values:[25,40,30,20],max:50,unit:"students"},practice:[
+ {q:"How many students joined the Art Club?",opts:["20","25","30","40"],correct:2,why:"The Art Club bar reaches 30 students."},
+ {q:"How many more students chose Music than Drama?",opts:["10","15","20","25"],correct:2,why:"Music: 40; Drama: 20. The difference is 40 − 20 = 20."},
+ {q:"Which sentence best summarizes the chart?",opts:["Drama was the most popular club.","Music was the most popular, while Drama was the least popular.","All clubs had the same number of students.","Science had twice as many students as Music."],correct:1,why:"Music has the highest value (40) and Drama the lowest (20)."}]},
+ {title:"The Library Survey",icon:"📊",tag:"BAR CHART",story:"The team discovers another clue: a survey of students' preferred reading genres. Compare the bars to identify the most and least popular genres.",task:"Which genre is the most popular among surveyed students?",opts:["A steady decrease","Mystery novels","No change at all","A sharp fall followed by no recovery"],correct:1,explain:"Mystery novels have the highest bar in this survey.",materialTitle:"Compare categories",material:"A bar chart compares values across categories. Identify the highest and lowest bars, then support your comparison with numbers. Use “the most popular”, “the least popular”, “higher than”, and “whereas”.",chart:{title:"Students’ Preferred Reading Genres",subtitle:"Number of students surveyed",type:"Bar chart",labels:["Mystery","Fantasy","History","Poetry"],values:[45,35,20,15],max:50,unit:"students"},practice:[
+ {q:"How many students chose Fantasy?",opts:["15","20","35","45"],correct:2,why:"The Fantasy bar represents 35 students."},
+ {q:"How many more students chose Mystery than Poetry?",opts:["20","25","30","35"],correct:2,why:"Mystery: 45; Poetry: 15. The difference is 30 students."},
+ {q:"Which phrase best describes the Mystery genre?",opts:["The least popular genre","The most popular genre","The smallest proportion","A declining trend"],correct:1,why:"Mystery has the highest bar at 45 students."}]},
+ {title:"The Big Picture",icon:"🥧",tag:"PIE CHART",story:"The final clue is a breakdown of how students travel to school. The festival team wants to make its event more accessible and environmentally friendly. Use the percentages to understand how the whole group is divided.",task:"Which transport method accounts for exactly one-third of students?",opts:["Walking","Bicycle","Bus","Motorcycle"],correct:2,explain:"The bus accounts for 33%, which is approximately one-third of the students.",materialTitle:"Understand proportions",material:"A pie chart shows how categories make up a whole (usually 100%). Look at the percentage for each slice. Use “accounts for”, “represents”, “approximately one-quarter”, and “the largest share”. Percentages may not add to exactly 100% if values are rounded.",chart:{title:"How Students Travel to School",subtitle:"Share of surveyed students",type:"Pie chart",labels:["Walking","Bicycle","Bus","Motorcycle"],values:[25,20,33,22],max:100,unit:"%"},practice:[
+ {q:"What percentage of students walk to school?",opts:["20%","22%","25%","33%"],correct:2,why:"Walking represents 25% of the students."},
+ {q:"Which two categories together make up 47%?",opts:["Walking + Bus","Bicycle + Motorcycle","Walking + Motorcycle","Bus + Motorcycle"],correct:2,why:"Walking is 25% and motorcycle is 22%, so together they make 47%."},
+ {q:"Which is the most accurate overall statement?",opts:["Everyone travels by bus.","Walking is the largest share.","Bus travel is the largest category at 33%.","Motorcycles account for half of students."],correct:2,why:"Bus travel is 33%, higher than walking (25%), bicycle (20%), and motorcycle (22%)."}]}
+];
+const duelQuestions=[
+ {q:"Which chart is usually best for comparing categories?",opts:["Bar chart","Line graph","Map","Timeline"],correct:0,why:"Bar charts make category comparisons easy."},
+ {q:"Which chart is commonly used to show changes over time?",opts:["Pie chart","Line graph","Venn diagram","Flowchart"],correct:1,why:"Pie charts show how categories make up a whole."},
+ {q:"What does the title of a chart tell you?",opts:["The author's age","What the chart is about","The answer to every question","The chart's colour"],correct:1,why:"The title introduces the topic or subject of the data."},
+ {q:"A value rises from 15 to 25. What is the increase?",opts:["5","10","15","40"],correct:1,why:"25 − 15 = 10."},
+ {q:"Which phrase signals a downward trend?",opts:["Rose steadily","Reached a peak","Declined gradually","Remained stable"],correct:2,why:"“Declined gradually” means the value decreased over time."},
+ {q:"A pie chart totals 100%. What does each slice represent?",opts:["A part of the whole","Only the largest value","A date","The chart title"],correct:0,why:"Each slice represents a category's proportion of the whole."},
+ {q:"The value stays at 30 for three months. Which phrase fits?",opts:["Fluctuated wildly","Remained stable","Doubled","Hit a low"],correct:1,why:"The value did not change, so it remained stable."},
+ {q:"What should you check before interpreting data?",opts:["Title, labels, units, and period","Only the colours","Only the biggest number","The font style"],correct:0,why:"These details tell you what is being measured and how to read it."},
+ {q:"Which sentence is supported by values 10, 20, 35?",opts:["The value decreased throughout.","The value increased overall.","The value remained at 20.","The values are identical."],correct:1,why:"The values rise from 10 to 35."},
+ {q:"What does “approximately 50%” mean?",opts:["Exactly 100%","About half","Less than 1%","Exactly 5%"],correct:1,why:"50% is half; approximately means about or nearly."},
+ {q:"A chart's highest point is often called its…",opts:["label","unit","peak","category"],correct:2,why:"A peak is the highest point or value."},
+ {q:"Which word is useful for comparing two contrasting values?",opts:["Whereas","Because of","Firstly","Suddenly"],correct:0,why:"“Whereas” links contrasting information."}
+];
+let currentChapter=0,storyStep=0,storyAnswer=null,practiceIndex=0,practiceScore=0,versus={active:false,questions:[],index:0,scores:[],player:0,answered:false,playerCount:2},soundOn=true;
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.add('hidden'));const el=document.getElementById(id);el.classList.remove('hidden');el.style.animation='none';void el.offsetWidth;el.style.animation='';window.scrollTo({top:0,behavior:'smooth'});}
+function toast(msg){const old=document.querySelector('.toast');if(old)old.remove();const t=document.createElement('div');t.className='toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2100)}
+function beep(freq=540,dur=.08){if(!soundOn)return;try{const c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.frequency.value=freq;g.gain.value=.035;o.connect(g);g.connect(c.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,c.currentTime+dur);o.stop(c.currentTime+dur);o.onended=()=>c.close()}catch(e){}}
+document.getElementById('soundToggle').onclick=()=>{soundOn=!soundOn;document.getElementById('soundToggle').textContent=soundOn?'🔊':'🔇';toast(soundOn?'Sound effects on':'Sound effects off');if(soundOn)beep()};
+function chartMarkup(ch){let vals=ch.chart.values,labels=ch.chart.labels,max=ch.chart.max;let isLine=ch.chart.type==='Line graph',isPie=ch.chart.type==='Pie chart';let colors=['#2874e8','#ffad5c','#e66e9c','#47c8b9'];let plot='';
+ if(isPie){let sum=vals.reduce((a,b)=>a+b,0),angle=0,stops=vals.map((v,i)=>{let start=angle;angle+=v/sum*360;return `${colors[i]} ${start}deg ${angle}deg`}).join(', ');plot=`<div style="display:flex;align-items:center;justify-content:center;gap:25px;flex-wrap:wrap;padding:18px 0"><div style="width:190px;height:190px;border-radius:50%;background:conic-gradient(${stops});box-shadow:inset 0 0 0 1px #ffffff55"></div><div style="display:grid;gap:10px">${labels.map((l,i)=>`<div style="font-size:13px;display:flex;align-items:center;gap:8px"><i style="width:11px;height:11px;border-radius:3px;background:${colors[i]}"></i><span>${l}</span><b style="margin-left:auto">${vals[i]}%</b></div>`).join('')}</div></div>`}
+ else if(isLine){let points=vals.map((v,i)=>`${30+i*(340/(vals.length-1))},${190-v/max*165}`).join(' ');plot=`<svg viewBox="0 0 400 225" style="width:100%;height:230px;overflow:visible" role="img" aria-label="${ch.chart.title}">${[25,65,105,145,185].map(y=>`<line x1="20" y1="${y}" x2="385" y2="${y}" stroke="#e9eef6" stroke-width="1"/>`).join('')}<polyline points="${points}" fill="none" stroke="#2874e8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>${vals.map((v,i)=>{let x=30+i*(340/(vals.length-1)),y=190-v/max*165;return `<circle cx="${x}" cy="${y}" r="5" fill="#47d7d0" stroke="#2874e8" stroke-width="2"/><text x="${x}" y="${y-12}" text-anchor="middle" fill="#354966" font-size="11" font-weight="800">${v}</text><text x="${x}" y="215" text-anchor="middle" fill="#66768e" font-size="11">${labels[i]}</text>`}).join('')}</svg>`}
+ else{plot=`<div class="graph"><div class="y-axis">${[max,max*.75,max*.5,max*.25,0].map(v=>`<span>${Math.round(v)}</span>`).join('')}</div><div class="plot">${vals.map((v,i)=>`<div class="plot-col"><span class="bar-value">${v}</span><div class="plot-bar ${i%3===1?'alt':i%3===2?'pink':''}" style="--h:${v/max*88}%;height:${v/max*88}%"></div><small>${labels[i]}</small></div>`).join('')}</div></div>`}
+ return `<div class="chart-panel"><div class="chart-heading"><div><h3>${ch.chart.title}</h3><p>${ch.chart.subtitle}</p></div><span class="chart-type">${ch.chart.type}</span></div>${plot}${!isPie&&!isLine?`<div class="graph-legend"><span><i class="dot"></i>${ch.chart.unit}</span><span>Compare bar heights to find the answer.</span></div>`:''}</div>`;
+}
+function startStory(i){currentChapter=i;storyStep=0;storyAnswer=null;practiceIndex=0;practiceScore=0;renderStory();showScreen('story')}
+function renderStory(){const ch=chapters[currentChapter],stage=document.getElementById('storyStage');document.getElementById('storyChapterLabel').textContent=`CHAPTER 0${currentChapter+1} • ${ch.tag}`;document.querySelectorAll('#storyProgress span').forEach((x,i)=>x.classList.toggle('done',i<=storyStep));
+ if(storyStep===0){stage.innerHTML=`<div class="lesson-layout"><div class="story-scene"><div class="story-emoji">${ch.icon}</div><div class="kicker" style="color:#7ff2e5">MISSION BRIEFING</div><h2>${ch.title}</h2><p>${ch.story}</p><button class="primary" onclick="storyStep=1;renderStory()">Accept the mission →</button></div><div class="story-task"><div class="kicker">YOUR FIRST CLUE</div><h3>${ch.task}</h3>${chartMarkup(ch)}<div class="muted" style="font-size:12px;margin-top:12px">Detective tip: read the chart title, labels, and values.</div></div></div>`}
+ else if(storyStep===1){stage.innerHTML=`<div class="lesson-layout"><div><div class="story-scene" style="min-height:260px"><div class="story-emoji">🧠</div><div class="kicker" style="color:#7ff2e5">FIELD NOTES</div><h2>${ch.materialTitle}</h2><p>${ch.material}</p><button class="primary" onclick="storyStep=2;renderStory()">I'm ready to practise →</button></div><div style="margin-top:15px">${chartMarkup(ch)}</div></div><div class="story-task"><div class="kicker">LANGUAGE TOOLKIT</div><h3>Useful expressions</h3>${(currentChapter===0?['the most popular','the least popular','more than / fewer than','twice as many']:currentChapter===1?['increased from … to …','fell slightly','rose steadily','reached a peak']:['accounts for','represents','the largest share','approximately one-quarter']).map(p=>`<span class="phrase">${p}</span>`).join('')}<div class="formula" style="margin-top:18px">Evidence + comparison + meaning = a strong analysis.</div><p class="muted" style="font-size:13px">Always use values from the chart to support your conclusion. Do not guess beyond the evidence.</p></div></div>`}
+ else {const q=ch.practice[practiceIndex];if(!q){finishChapter();return}stage.innerHTML=`<div class="quiz-layout"><div>${chartMarkup(ch)}<div class="objective-strip" style="margin-top:14px"><div>🔎</div><div><b>Use the evidence</b><p class="muted" style="margin:4px 0 0;font-size:13px">Read the chart, then choose the most accurate answer.</p></div></div></div><div class="quiz-question"><div class="question-top"><span class="kicker">PRACTICE ROUND</span><span class="pill">Q ${practiceIndex+1} / ${ch.practice.length}</span></div><div class="progress-track"><div class="progress-fill" style="width:${practiceIndex/ch.practice.length*100}%"></div></div><h2>${q.q}</h2><div class="choice-list">${q.opts.map((o,i)=>`<button class="choice" onclick="answerPractice(${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}</div><div id="practiceFeedback"></div><div class="quiz-footer"><span class="muted" style="font-size:12px">Score: <b>${practiceScore}</b> / ${ch.practice.length}</span><button id="practiceNext" class="small-btn blue hidden" onclick="nextPractice()">Next →</button></div></div></div>`}
+}
+function answerPractice(i){const ch=chapters[currentChapter],q=ch.practice[practiceIndex],fb=document.getElementById('practiceFeedback');if(!fb||fb.dataset.done)return;fb.dataset.done='1';document.querySelectorAll('#storyStage .choice').forEach((b,j)=>{b.disabled=true;if(j===q.correct&&!q.fix)b.classList.add('selected')});let correct=i===q.correct;if(correct){practiceScore++;beep(760)}else beep(220);fb.innerHTML=`<div class="feedback ${correct?'good':'bad'}">${correct?'✓ Correct! +1 point':'Not quite — check the chart again.'}<br><span style="font-weight:600">${q.why}</span></div>`;document.getElementById('practiceNext').classList.remove('hidden')}
+function nextPractice(){practiceIndex++;renderStory()}
+function finishChapter(){const ch=chapters[currentChapter],stage=document.getElementById('storyStage');document.querySelectorAll('#storyProgress span').forEach(x=>x.classList.add('done'));let badge=practiceScore===3?'🏆':practiceScore>=2?'🥇':'🔎';stage.innerHTML=`<div class="result-card"><div class="result-icon">${badge}</div><div class="kicker">CHAPTER COMPLETE</div><h1>${practiceScore===3?'Perfect detective work!':practiceScore>=2?'Great investigation!':'Clue collected!'}</h1><p>You scored <b>${practiceScore} out of ${ch.practice.length}</b> in ${ch.title}. ${practiceScore===3?'You earned the Data Master badge.': 'Review the material and try again to improve your score.'}</p><div class="scoreboard" style="justify-content:center;margin-top:20px"><div class="score-box"><strong>${practiceScore}/${ch.practice.length}</strong><small>PRACTICE SCORE</small></div><div class="score-box"><strong>${Math.round(practiceScore/ch.practice.length*100)}%</strong><small>ACCURACY</small></div></div><div class="result-actions"><button class="secondary" onclick="startStory(${currentChapter})">↻ Try again</button>${currentChapter<2?`<button class="primary" onclick="startStory(${currentChapter+1})">Next chapter →</button>`:`<button class="primary" onclick="showScreen('results');showFinalStoryResult()">View case report →</button>`}<button class="small-btn light" onclick="showScreen('levels')">All chapters</button></div></div>`;if(practiceScore>=2)confetti(stage)}
+function confetti(parent){for(let i=0;i<22;i++){let x=document.createElement('i');x.className='confetti-piece';x.style.left=Math.random()*100+'%';x.style.animationDelay=Math.random()*.7+'s';x.style.background=['#ffd166','#47d7d0','#ff6b9a','#6b8cff'][i%4];parent.appendChild(x);setTimeout(()=>x.remove(),2400)}}
+function showFinalStoryResult(){document.getElementById('resultContent').innerHTML=`<div class="result-card"><div class="result-icon">🗂️</div><div class="kicker">CASE REPORT</div><h1>You've investigated all three charts!</h1><p>You explored bar charts and pie charts. Keep using chart evidence and precise English phrases to make strong conclusions.</p><div class="result-actions"><button class="secondary" onclick="showScreen('levels')">Replay story mode</button><button class="primary" onclick="startVersus()">Challenge a friend ⚔️</button></div></div>`}
+
+function startVersus(){
+ versus={active:false,questions:[],index:0,scores:[],player:0,answered:false,playerCount:2};
+ document.getElementById('versusSetup').classList.remove('hidden');
+ document.getElementById('versusGame').classList.add('hidden');
+ document.getElementById('playerCount').value='2';
+ renderPlayerNameInputs();
+ showScreen('versus');
+}
+function renderPlayerNameInputs(){
+ const count=Number(document.getElementById('playerCount')?.value||2),el=document.getElementById('playerNameInputs');
+ if(!el)return;
+ el.style.gridTemplateColumns=count>=4?'repeat(2,minmax(0,1fr))':'repeat(2,minmax(0,1fr))';
+ el.innerHTML=Array.from({length:count},(_,i)=>`<label>Player ${i+1}<input id="playerName${i}" value="Player ${i+1}" maxlength="20" style="display:block;width:100%;padding:12px;margin-top:7px;border:1px solid #dce5f1;border-radius:12px;font:inherit"></label>`).join('');
+}
+function playerName(i){return (document.getElementById(`playerName${i}`)?.value||`Player ${i+1}`).trim()||`Player ${i+1}`}
+function beginVersus(){
+ const n=Number(document.getElementById('roundCount').value),count=Math.min(6,Math.max(2,Number(document.getElementById('playerCount').value)||2));
+ const pool=[...duelQuestions].sort(()=>Math.random()-.5);
+ versus={active:true,questions:pool.slice(0,Math.min(n,pool.length)),index:0,scores:Array(count).fill(0),player:0,answered:false,playerCount:count};
+ document.getElementById('versusSetup').classList.add('hidden');document.getElementById('versusGame').classList.remove('hidden');renderVersus();
+}
+function renderVersus(){
+ let root=document.getElementById('versusGame');
+ if(versus.index>=versus.questions.length){finishVersus();return}
+ let q=versus.questions[versus.index],name=playerName(versus.player);versus.answered=false;
+ const scoreboard=versus.scores.map((score,i)=>`<div class="score-box" style="${i===versus.player?'border:2px solid #16796b':''}"><small>${escapeHtml(playerName(i))}${i===versus.player?' • YOUR TURN':''}</small><strong>${score}</strong><small>${score>0?'Keep going!':'Ready to score'}</small></div>`).join('');
+ const headerScores=document.getElementById('versusHeaderScores');if(headerScores)headerScores.innerHTML=versus.scores.map((score,i)=>`<div><small>${escapeHtml(playerName(i))}</small><b>${score}</b></div>`).join('');
+ root.innerHTML=`<div class="question-top"><div><span class="kicker">QUESTION ${versus.index+1} OF ${versus.questions.length}</span><h2 style="margin:6px 0">Your move, ${escapeHtml(name)}!</h2></div><span class="pill">⚡ +100 points per correct answer</span></div><div class="progress-track"><div class="progress-fill" style="width:${versus.index/versus.questions.length*100}%"></div></div><div class="quiz-layout"><div class="quiz-question"><span class="player-label">PLAYER ${versus.player+1} OF ${versus.playerCount}</span><h2>${q.q}</h2><div class="choice-list">${q.opts.map((o,i)=>`<button class="choice" onclick="answerVersus(${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}</div><div id="duelFeedback"></div><div class="quiz-footer"><span class="muted" style="font-size:12px">One answer per turn</span><button id="duelNext" class="small-btn blue hidden" onclick="nextVersus()">${versus.index===versus.questions.length-1?'Final scores →':'Next player →'}</button></div></div><div class="panel"><div class="kicker">LIVE LEADERBOARD</div><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:15px">${scoreboard}</div><div class="turn-note">🎯 Players take turns in order. Correct answers earn 100 points. The leaderboard updates after every answer.</div><p class="muted" style="font-size:13px">Tip: explain your choice using an accurate graph-analysis expression.</p></div></div>`;
+}
+function answerVersus(i){
+ if(versus.answered)return;versus.answered=true;
+ let q=versus.questions[versus.index],correct=i===q.correct,fb=document.getElementById('duelFeedback');
+ document.querySelectorAll('#versusGame .choice').forEach((b,j)=>{b.disabled=true;if(j===q.correct)b.classList.add('selected')});
+ if(correct){versus.scores[versus.player]+=100;beep(780)}else beep(220);
+ fb.innerHTML=`<div class="feedback ${correct?'good':'bad'}">${correct?'✓ Correct! +100 points':'Not this time!'}<br><span style="font-weight:600">${q.why}</span></div>`;
+ document.getElementById('duelNext').classList.remove('hidden');
+}
+function nextVersus(){versus.index++;versus.player=(versus.player+1)%versus.playerCount;renderVersus()}
+function finishVersus(){
+ const scores=versus.scores,high=Math.max(...scores),winners=scores.map((s,i)=>s===high?i:-1).filter(i=>i>=0);
+ const winnerText=winners.length>1?`It's a tie between ${winners.map(i=>escapeHtml(playerName(i))).join(', ')}!`:`${escapeHtml(playerName(winners[0]))} wins!`;
+ const sorted=scores.map((score,i)=>({score,name:playerName(i),i})).sort((a,b)=>b.score-a.score);
+ document.getElementById('versusGame').innerHTML=`<div class="result-card"><div class="result-icon">${winners.length>1?'🤝':'🏆'}</div><div class="kicker">SCHOLARS' ARENA • MATCH COMPLETE</div><h1>${winnerText}</h1><p>Well played, scholars! Review the explanations and keep practising accurate chart descriptions.</p><div style="display:grid;gap:8px;max-width:500px;margin:22px auto">${sorted.map((p,i)=>`<div style="display:flex;justify-content:space-between;align-items:center;background:${i===0?'#e6f0e4':'#f4f7fc'};border-radius:12px;padding:13px 16px"><b>${i===0?'🥇':i===1?'🥈':i===2?'🥉':`${i+1}.`} ${escapeHtml(p.name)}</b><strong>${p.score} pts</strong></div>`).join('')}</div><div class="result-actions"><button class="secondary" onclick="beginVersus()">Play again ↻</button><button class="primary" onclick="startVersus()">New match settings</button><button class="small-btn light" onclick="showScreen('home')">Main menu</button></div></div>`;
+ if(winners.length===1)confetti(document.getElementById('versusGame'));
+}
+
+
+const presentationScenes=[
+ {title:"Welcome, young scholar!",text:"In the spirit of the great Muslim scholars, we observe carefully, ask questions, and let evidence guide our conclusions.",expression:"A good description begins with what the chart shows.",kind:"bar"},
+ {title:"Read the bar chart",text:"A bar chart compares categories. Start by identifying the title, the categories, the units, and the tallest and shortest bars.",expression:"The bar chart compares the number of students in four clubs.",kind:"bar"},
+ {title:"Compare the figures",text:"Use comparative language and support your statement with numbers. Avoid saying a category is popular without evidence.",expression:"Music was the most popular club, at 40 students, whereas Drama had 20.",kind:"bar"},
+ {title:"Describe a pie chart",text:"A pie chart divides a whole into slices. Percentages help you describe each category's share of the total.",expression:"The pie chart illustrates how students travel to school.",kind:"pie"},
+ {title:"Report proportions",text:"Identify the largest and smallest slices, and combine categories only when the arithmetic supports your claim.",expression:"Bus travel accounted for the largest share, at 33%.",kind:"pie"},
+ {title:"Your scholar's summary",text:"For IELTS-style analysis, introduce the chart, give an overview of the main features, then compare the most relevant figures.",expression:"Overall, X recorded the highest figure, while Y accounted for the smallest share.",kind:"pie"}
+];
+let presentationIndex=0,presentationPlaying=false,presentationVoiceOn=true,presentationTimer=null;
+function startPresentation(){presentationIndex=0;presentationPlaying=false;clearInterval(presentationTimer);showScreen('presentation');renderPresentation()}
+function renderPresentation(){
+ const s=presentationScenes[presentationIndex];
+ document.getElementById('presentationChapter').textContent=`SCENE ${presentationIndex+1} / ${presentationScenes.length}`;
+ document.getElementById('presentationTitle').textContent=s.title;
+ document.getElementById('presentationText').textContent=s.text;
+ document.getElementById('presentationExpression').textContent=s.expression;
+ document.getElementById('presentationProgress').style.width=((presentationIndex+1)/presentationScenes.length*100)+'%';
+ const chart=document.getElementById('presentationChart');
+ chart.innerHTML=s.kind==='bar'?`<div style="font-size:11px;font-weight:900;margin-bottom:6px">STUDENTS IN SCHOOL CLUBS</div><div class="pres-bars"><span style="--h:55%"></span><span style="--h:90%"></span><span style="--h:68%"></span><span style="--h:42%"></span></div><div style="display:flex;justify-content:space-around;font-size:9px;margin-top:5px;color:#52675d"><span>Science</span><span>Music</span><span>Art</span><span>Drama</span></div>`:`<div style="font-size:11px;font-weight:900;text-align:center">TRAVEL TO SCHOOL</div><div class="pres-pie"></div>`;
+ document.getElementById('presentationPlay').textContent=presentationPlaying?'⏸ Pause lesson':'▶ Play lesson';
+ document.getElementById('presentationStatus').textContent=presentationPlaying?'Playing animated lesson':`Scene ${presentationIndex+1} of ${presentationScenes.length}`;
+ if(presentationVoiceOn&&presentationPlaying)speakPresentation(s.text+' '+s.expression);
+}
+function speakPresentation(text){
+ if(!presentationVoiceOn||!('speechSynthesis' in window))return;
+ window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(text);utterance.lang='en-GB';utterance.rate=.88;window.speechSynthesis.speak(utterance);
+}
+function togglePresentationVoice(){presentationVoiceOn=!presentationVoiceOn;document.getElementById('presentationVoice').textContent=presentationVoiceOn?'🔊 Voice: on':'🔇 Voice: off';if(!presentationVoiceOn&&'speechSynthesis'in window)window.speechSynthesis.cancel();else if(presentationPlaying)speakPresentation(presentationScenes[presentationIndex].text+' '+presentationScenes[presentationIndex].expression)}
+function togglePresentation(){
+ if(presentationPlaying){presentationPlaying=false;clearInterval(presentationTimer);if('speechSynthesis'in window)window.speechSynthesis.cancel();renderPresentation();return}
+ presentationPlaying=true;renderPresentation();
+ presentationTimer=setInterval(()=>{if(presentationIndex<presentationScenes.length-1){presentationIndex++;renderPresentation()}else{presentationPlaying=false;clearInterval(presentationTimer);if('speechSynthesis'in window)window.speechSynthesis.cancel();document.getElementById('presentationPlay').textContent='↻ Replay lesson';document.getElementById('presentationStatus').textContent='Presentation complete — replay or review the expressions';}},6500);
+}
+function presentationNext(){presentationIndex=Math.min(presentationScenes.length-1,presentationIndex+1);renderPresentation()}
+function presentationPrev(){presentationIndex=Math.max(0,presentationIndex-1);renderPresentation()}
+window.addEventListener('beforeunload',()=>{clearInterval(presentationTimer);if('speechSynthesis'in window)window.speechSynthesis.cancel()});
+
+// Additional modes: IELTS Sprint and Mystery Tiles.
+const sprintQuestions = [
+ {q:"Which sentence is a suitable IELTS Task 1 overview?",opts:["The chart is blue and green.","Overall, sales increased, with the highest figure recorded in June.","I think the shop did well because of advertising.","June is my favourite month."],correct:1,why:"An overview summarises the main pattern supported by the data."},
+ {q:"A figure rises from 30 to 45. Which description is accurate?",opts:["It fell by 15.","It increased by 15.","It remained stable.","It doubled."],correct:1,why:"45 − 30 = 15, so the figure increased by 15 units."},
+ {q:"Which phrase means a value stopped rising and became steady?",opts:["Levelled off","Plunged","Hit a low","Fluctuated sharply"],correct:0,why:"“Levelled off” means the value became stable after a change."},
+ {q:"Which phrase is best for a value of 49%?",opts:["Exactly half","Just under half","One-tenth","More than three-quarters"],correct:1,why:"49% is slightly below 50%, so “just under half” is accurate."},
+ {q:"What should an IELTS Task 1 overview include?",opts:["Every data point","The main trends or most important features","Personal opinions","Reasons not shown in the chart"],correct:1,why:"The overview highlights the main features rather than every number."},
+ {q:"A value changes from 20% to 35%. The difference is…",opts:["15 percentage points","15% of the original only","55 percentage points","5 percentage points"],correct:0,why:"The difference between 35% and 20% is 15 percentage points."},
+ {q:"Which word best introduces a contrast?",opts:["Similarly","Whereas","Consequently","Firstly"],correct:1,why:"“Whereas” is used to compare contrasting information."},
+ {q:"A line goes up and down repeatedly. It…",opts:["remains stable","fluctuates","reaches a plateau immediately","declines steadily"],correct:1,why:"“Fluctuates” describes repeated rises and falls."},
+ {q:"Which is the strongest data-based sentence?",opts:["The chart is interesting.","People obviously prefer buses.","Bus use rose from 25% to 40% between 2020 and 2024.","The city should ban cars."],correct:2,why:"It gives a specific, measurable change and a time period."},
+ {q:"Which phrase describes the highest value?",opts:["At its lowest point","Reached a peak","Fell gradually","Was negligible"],correct:1,why:"A peak is the highest point or value."}
+];
+let sprintState={questions:[],index:0,score:0,correct:0,seconds:60,ended:false,answered:false,timer:null};
+let tileState={questions:[],used:new Set(),score:0,correct:0,current:null,answered:false};
+function startSprint(){
+ clearInterval(sprintState.timer);
+ sprintState={questions:[...sprintQuestions].sort(()=>Math.random()-.5).slice(0,8),index:0,score:0,correct:0,seconds:60,ended:false,answered:false,timer:null};
+ showScreen('sprint');renderSprint();
+ sprintState.timer=setInterval(()=>{sprintState.seconds--;const t=document.getElementById('sprintTimer');if(t)t.textContent=`⏱️ ${sprintState.seconds} seconds`;if(sprintState.seconds<=0){clearInterval(sprintState.timer);endSprint(true)}},1000);
+}
+function renderSprint(){
+ if(sprintState.index>=sprintState.questions.length){endSprint(false);return}
+ const q=sprintState.questions[sprintState.index];sprintState.answered=false;
+ document.getElementById('sprintProgress').style.width=(sprintState.index/sprintState.questions.length*100)+'%';
+ document.getElementById('sprintContent').innerHTML=`<div class="quiz-layout"><div class="chart-panel"><div class="chart-heading"><div><h3>IELTS Task 1 quick strategy</h3><p>Introduction → overview → key details</p></div><span class="chart-type">BAND SKILLS</span></div><div class="formula">1. Identify the main trend.</div><div class="formula">2. Select the most important values.</div><div class="formula">3. Compare accurately; do not speculate.</div><div class="scoreboard" style="margin-top:20px"><div class="score-box"><strong>${sprintState.score}</strong><small>POINTS</small></div><div class="score-box"><strong>${sprintState.correct}</strong><small>CORRECT</small></div></div></div><div class="quiz-question"><div class="question-top"><span class="kicker">SPRINT QUESTION</span><span class="pill">${sprintState.index+1} / ${sprintState.questions.length}</span></div><h2>${q.q}</h2><div class="choice-list">${q.opts.map((o,i)=>`<button class="choice" onclick="answerSprint(${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}</div><div id="sprintFeedback"></div><div class="quiz-footer"><span class="muted" style="font-size:12px">Correct answer = 100 points</span><button id="sprintNext" class="small-btn blue hidden" onclick="nextSprint()">Next →</button></div></div></div>`;
+}
+function answerSprint(i){
+ if(sprintState.answered||sprintState.ended)return;sprintState.answered=true;
+ const q=sprintState.questions[sprintState.index],ok=i===q.correct;
+ document.querySelectorAll('#sprintContent .choice').forEach((b,j)=>{b.disabled=true;if(j===q.correct)b.classList.add('selected')});
+ if(ok){sprintState.score+=100;sprintState.correct++;beep(760)}else beep(220);
+ document.getElementById('sprintFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Correct — +100 points!':'Not quite — keep going!'}<br><span style="font-weight:600">${q.why}</span></div>`;
+ document.getElementById('sprintNext').classList.remove('hidden');
+}
+function nextSprint(){sprintState.index++;renderSprint()}
+function endSprint(timeUp){
+ if(sprintState.ended)return;sprintState.ended=true;clearInterval(sprintState.timer);
+ const el=document.getElementById('sprintContent');if(!el)return;
+ el.innerHTML=`<div class="result-card"><div class="result-icon">${sprintState.correct>=6?'🏆':'📘'}</div><div class="kicker">${timeUp?'TIME IS UP':'SPRINT COMPLETE'}</div><h1>${sprintState.correct>=6?'Excellent data analysis!':'Good practice — keep improving!'}</h1><p>You answered ${sprintState.correct} correctly and earned ${sprintState.score} points. ${timeUp?'Review the explanations and try again to beat your score.':'Your pace and accuracy both matter; always choose the statement supported by the data.'}</p><div class="scoreboard" style="justify-content:center;margin:20px"><div class="score-box"><strong>${sprintState.score}</strong><small>FINAL SCORE</small></div><div class="score-box"><strong>${sprintState.correct}/${sprintState.questions.length}</strong><small>ACCURACY</small></div></div><div class="result-actions"><button class="secondary" onclick="startSprint()">Play again ↻</button><button class="primary" onclick="showScreen('expressions')">Review IELTS expressions</button><button class="small-btn light" onclick="showScreen('home')">Main menu</button></div></div>`;
+ if(sprintState.correct>=6)confetti(el);
+}
+function startTiles(){
+ tileState={questions:[...duelQuestions].sort(()=>Math.random()-.5).slice(0,9),used:new Set(),score:0,correct:0,current:null,answered:false};
+ showScreen('tiles');renderTiles();document.getElementById('tileQuestion').innerHTML='';renderTileLeaderboard();
+}
+function renderTiles(){
+ const board=document.getElementById('tileBoard');if(!board)return;
+ board.innerHTML=tileState.questions.map((q,i)=>`<button class="quest-tile" ${tileState.used.has(i)?'disabled':''} onclick="openTile(${i})"><b>${tileState.used.has(i)?'✓':String(i+1).padStart(2,'0')}</b><span>${tileState.used.has(i)?'CLUE FOUND':'MYSTERY CLUE'}</span></button>`).join('');
+ document.getElementById('tileScore').textContent=tileState.score;document.getElementById('tileRemaining').textContent=tileState.questions.length-tileState.used.size;document.getElementById('tileCorrect').textContent=tileState.correct;
+ if(tileState.used.size===tileState.questions.length){document.getElementById('tileQuestion').innerHTML=`<div class="result-card"><div class="result-icon">🏆</div><h2>All clues uncovered!</h2><p>You scored ${tileState.score} points with ${tileState.correct} correct answers out of ${tileState.questions.length}.</p><button class="secondary" onclick="startTiles()">Shuffle and play again ↻</button></div>`}
+}
+function openTile(i){
+ if(tileState.used.has(i))return;tileState.current=i;tileState.answered=false;
+ const q=tileState.questions[i];document.getElementById('tileQuestion').innerHTML=`<div class="quiz-question"><div class="question-top"><span class="kicker">MYSTERY TILE ${i+1}</span><span class="pill">100 POINTS</span></div><h2>${q.q}</h2><div class="choice-list">${q.opts.map((o,j)=>`<button class="choice" onclick="answerTile(${j})">${String.fromCharCode(65+j)}. ${o}</button>`).join('')}</div><div id="tileFeedback"></div></div>`;document.getElementById('tileQuestion').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function answerTile(i){
+ if(tileState.answered)return;tileState.answered=true;const q=tileState.questions[tileState.current],ok=i===q.correct;
+ tileState.used.add(tileState.current);if(ok){tileState.score+=100;tileState.correct++;beep(760)}else beep(220);
+ document.querySelectorAll('#tileQuestion .choice').forEach((b,j)=>{b.disabled=true;if(j===q.correct)b.classList.add('selected')});
+ document.getElementById('tileFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Correct! +100 points':'Not quite — clue revealed.'}<br><span style="font-weight:600">${q.why}</span></div><button class="secondary" style="margin-top:12px" onclick="closeTileFeedback()">Back to the board →</button>`;
+ renderTiles();renderTileLeaderboard();
+}
+function closeTileFeedback(){document.getElementById('tileQuestion').innerHTML='';document.getElementById('tileBoard').scrollIntoView({behavior:'smooth',block:'start'})}
+function renderTileLeaderboard(){
+ const el=document.getElementById('tileLeaderboardRows');if(!el)return;
+ el.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #edf1e9"><b>1. Data Detective</b><b>${tileState.score} pts</b></div><p class="muted" style="font-size:12px;margin-bottom:0">This leaderboard tracks the current game session. Start a new round to reset it.</p>`;
+}
+
+</script>
+</body>
+</html>
